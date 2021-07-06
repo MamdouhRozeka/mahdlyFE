@@ -36,7 +36,7 @@ export default class HomeScreen  extends React.Component{
     .then((response) => response.json())
       .then((json) =>{
         const data = json.filter(item => {
-          return (item.id=== 3 || item.id=== 4 || item.id=== 6)
+          return item.featured
         })
         this.setState({ ...this.state,data })})
       .catch((error) => console.error(error))
