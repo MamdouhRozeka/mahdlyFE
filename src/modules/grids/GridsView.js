@@ -128,7 +128,7 @@ export default class GridsScreen extends React.Component {
         <View style={styles.itemThreeContent}>
           {/* <Text style={styles.itemThreeBrand}>{item.area}</Text> */}
           <View>
-            <Text style={styles.itemThreeTitle}>{item.name}</Text>
+            <Text style={styles.itemThreeTitle} numberOfLines={1}>{item.name} </Text>
             <Text style={styles.itemThreeSubtitle} numberOfLines={3}>
               {item.description}
             </Text>
