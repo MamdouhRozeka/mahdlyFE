@@ -2,6 +2,24 @@ import { compose, withState } from 'recompose';
 
 import GridView from './GridsView';
 
+// import {useEffect,useState} from "react";
+
+const search = '';
+
+const loading = true;
+// const [fetchData, setFetchData] = useState([]);
+// const [loading, setLoading] = useState(true);
+
+// function Form() {
+
+//   useEffect(() => {
+//     fetch('http://localhost:9090/university/all')
+//       .then((response) => response.json())
+//       .then((json) => setFetchData(json))
+//       .catch((error) => console.error(error))
+//       .finally(() => setLoading(false));
+//   }, []);
+// }
 const listData = [
   {
     id: 1,
@@ -18,7 +36,7 @@ const listData = [
     id: 2,
     brand: 'Weeknight',
     title: 'NEXT-LEVEL WEAR',
-    subtitle: 'Office, prom or special parties is all dressed up',
+    subtitle: 'Office, prom or special parties is all dressed up Office, prom or special parties is all dressed up Office, prom or special parties is all dressed up Office, prom or special parties is all dressed up Office, prom or special parties is all dressed up ',
     price: '$29.99',
     priceFrom: true,
     image: 'https://reactnativestarter.com/demo/images/pexels-photo-26549.jpg',
@@ -126,8 +144,12 @@ const listData = [
   },
 ];
 
+const filteredData = listData;
 export default compose(
   withState('tabIndex', 'setTabIndex', 0),
   withState('tabs', 'setTabs', ['Grid', 'List 1', 'List 2']),
+  withState('search', 'setSearch', search),
   withState('data', 'setData', listData),
+  withState('filteredData', 'setFilteredData', filteredData),
+  withState('loading', 'setLoading', loading),
 )(GridView);

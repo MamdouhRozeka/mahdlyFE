@@ -6,6 +6,7 @@ import ComponentsScreen from '../components/ComponentsViewContainer';
 
 const iconHome = require('../../../assets/images/tabbar/home.png');
 const iconCalendar = require('../../../assets/images/tabbar/calendar.png');
+const iconUniversity = require('../../../assets/images/drawer/university.png');
 const iconGrids = require('../../../assets/images/tabbar/grids.png');
 const iconPages = require('../../../assets/images/tabbar/pages.png');
 const iconComponents = require('../../../assets/images/tabbar/components.png');
@@ -16,15 +17,15 @@ const tabNavigationData = [
     component: HomeScreen,
     icon: iconHome,
   },
+  // {
+  //   name: 'Calendar',
+  //   component: CalendarScreen,
+  //   icon: iconCalendar,
+  // },
   {
-    name: 'Calendar',
-    component: CalendarScreen,
-    icon: iconCalendar,
-  },
-  {
-    name: 'Grids',
+    name: 'Universities',
     component: GridsScreen,
-    icon: iconGrids,
+    icon: iconUniversity,
   },
   {
     name: 'Pages',

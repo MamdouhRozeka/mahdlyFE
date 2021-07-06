@@ -4,6 +4,7 @@ import { TouchableOpacity, Image } from 'react-native';
 import TabNavigator from './MainTabNavigator';
 import GalleryScreen from '../gallery/GalleryViewContainer';
 import AvailableInFullVersion from '../../modules/availableInFullVersion/AvailableInFullVersionViewContainer';
+import UniversityView from '../../modules/university/UniversityViewContainer';
 
 // import ProfileScreen from '../profile/ProfileViewContainer';
 // import ArticleScreen from '../article/ArticleViewContainer';
@@ -38,7 +39,7 @@ const headerBackground = require('../../../assets/images/topBarBg.png');
 
 const StackNavigationData = [
   {
-    name: 'React Native Starter',
+    name: 'Mahdly',
     component: TabNavigator,
     headerLeft: null,
     headerBackground: { source: headerBackground },
@@ -93,8 +94,19 @@ const StackNavigationData = [
     },
   },
   {
+    name: 'University',
+    component: UniversityView,
+    headerLeft: headerLeftComponent,
+    headerBackground: { source: headerBackground },
+    headerTitleStyle: {
+      fontFamily: fonts.primaryRegular,
+      color: colors.white,
+      fontSize: 18,
+    },
+  },
+  {
     name: 'Article',
-    component: AvailableInFullVersion,
+    component:  AvailableInFullVersion,
     headerLeft: headerLeftComponent,
     headerBackground: { source: headerBackground },
     headerTitleStyle: {

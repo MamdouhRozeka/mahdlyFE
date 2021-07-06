@@ -14,15 +14,13 @@ import {useEffect} from "react";
 
 import { RadioGroup, GridRow } from '../../components';
 import { SearchBar } from 'react-native-elements';
+import { SliderBox } from "react-native-image-slider-box";
 
-export default class GridsScreen extends React.Component {
+export default class UniversityScreen extends React.Component {
 
   state = {
-    search: '',
-    data:[],
-    filteredData:[],
-    loading:true,
-    university:{}
+    university:this.props.route.params.university,
+    images:[]
   };
   
   url = 'http://localhost:9090/file/download/'
@@ -32,9 +30,15 @@ export default class GridsScreen extends React.Component {
   }
 
   fetchedData = async () => {
-  await fetch('http://localhost:9090/university/all')
+  await fetch(`http://localhost:9090/university/${this.state.university.id}`)
     .then((response) => response.json())
-      .then((json) =>this.setState({ ...this.state,data:json,filteredData:json }))
+      .then((json) => {
+      let images = []
+      json.imageCarousel.forEach(element => {
+        images.push(`${this.url}${element}`)
+        this.setState({ ...this.state,images })
+      })
+    })
       .catch((error) => console.error(error))
       .finally(() => {this.setState({ ...this.state,loading:false })});
   }
@@ -55,13 +59,11 @@ export default class GridsScreen extends React.Component {
       this.props.tabIndex
     ];
 
-    _openUniversity = university => {
-      this.setState({...this.state, university})
-      this.props.navigation.navigate('University', {
-        university,
+    _openArticle = article => {
+      this.props.navigation.navigate('Article', {
+        article,
       });
     };
-  
   
 
   renderRowOne = rowData => {
@@ -120,7 +122,7 @@ export default class GridsScreen extends React.Component {
     <TouchableOpacity
       key={item.id}
       style={styles.itemThreeContainer}
-      onPress={() => this._openUniversity(item)}
+      onPress={() => this._openArticle(item)}
     >
       
       <View style={styles.itemThreeSubContainer}>
@@ -159,17 +161,15 @@ export default class GridsScreen extends React.Component {
 
   render() {
     // const groupedData =this.props.filteredData;
-    const { search,filteredData } = this.state;
+    // const { search,filteredData } = this.state;
 
     return (
       <View style={styles.container}>
-        <SearchBar
-        placeholder="Type Here..."
-        onChangeText={this.updateSearch}
-        value={search}
-        round={true}
-        lightTheme={true}
-      />
+        <SliderBox
+  images={this.state.images}
+  onCurrentImagePressed={index => {}}
+  currentImageEmitter={index => {}}
+/>
         {/* <View style={{ height: 50 }}>
           <RadioGroup
             selectedIndex={this.props.tabIndex}
@@ -178,7 +178,7 @@ export default class GridsScreen extends React.Component {
             underline
           />
         </View> */}
-        <FlatList
+        {/* <FlatList
           keyExtractor={item =>
             item.id
               ? `${this.props.tabIndex}-${item.id}`
@@ -187,7 +187,8 @@ export default class GridsScreen extends React.Component {
           style={{ backgroundColor: colors.white, paddingHorizontal: 15 }}
           data={filteredData}
           renderItem={this._getRenderItemFunction()}
-        />
+        /> */}
+
       </View>
     );
   }

@@ -12,6 +12,7 @@ import AvailableInFullVersion from '../../modules/availableInFullVersion/Availab
 const iconHome = require('../../../assets/images/drawer/home.png');
 const iconCalendar = require('../../../assets/images/drawer/calendar.png');
 const iconGrids = require('../../../assets/images/drawer/grids.png');
+const iconUniversity = require('../../../assets/images/drawer/university.png');
 const iconPages = require('../../../assets/images/drawer/pages.png');
 const iconComponents = require('../../../assets/images/drawer/components.png');
 const iconSettings = require('../../../assets/images/drawer/settings.png');
@@ -22,13 +23,13 @@ const drawerData = [
     name: 'Home',
     icon: iconHome,
   },
+  // {
+  //   name: 'Calendar',
+  //   icon: iconCalendar,
+  // },
   {
-    name: 'Calendar',
-    icon: iconCalendar,
-  },
-  {
-    name: 'Grids',
-    icon: iconGrids,
+    name: 'Universities',
+    icon: iconUniversity,
   },
   {
     name: 'Pages',
