@@ -25,14 +25,14 @@ export default class GridsScreen extends React.Component {
     university:{}
   };
   
-  url = 'http://localhost:9090/file/download/'
+  url = 'http://192.168.1.4:9090/file/download/'
 
   componentDidMount(){
     this.fetchedData();
   }
 
   fetchedData = async () => {
-  await fetch('http://localhost:9090/university/all')
+  await fetch('http://192.168.1.4:9090/university/all')
     .then((response) => response.json())
       .then((json) =>this.setState({ ...this.state,data:json,filteredData:json }))
       .catch((error) => console.error(error))

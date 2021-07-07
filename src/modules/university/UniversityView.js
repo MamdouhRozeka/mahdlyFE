@@ -16,6 +16,8 @@ import { RadioGroup, GridRow } from '../../components';
 import { SearchBar } from 'react-native-elements';
 import { SliderBox } from "react-native-image-slider-box";
 
+import { SimpleAnimation } from 'react-native-simple-animations';
+
 export default class UniversityScreen extends React.Component {
 
   state = {
@@ -23,19 +25,19 @@ export default class UniversityScreen extends React.Component {
     images:[]
   };
   
-  url = 'http://localhost:9090/file/download/'
+  url = 'http://192.168.1.4:9090/file/download/'
 
   componentDidMount(){
     this.fetchedData();
   }
 
   fetchedData = async () => {
-  await fetch(`http://localhost:9090/university/${this.state.university.id}`)
+  await fetch(`http://192.168.1.4:9090/university/${this.state.university.id}`)
     .then((response) => response.json())
       .then((json) => {
       let images = []
       json.imageCarousel.forEach(element => {
-        images.push(`${this.url}${element}`)
+        images.push(`${this.url}${element.url}`)
         this.setState({ ...this.state,images })
       })
     })
@@ -165,11 +167,16 @@ export default class UniversityScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+        <SimpleAnimation delay={500} duration={1000} fade staticType='zoom'>
+
         <SliderBox
   images={this.state.images}
   onCurrentImagePressed={index => {}}
   currentImageEmitter={index => {}}
+  autoplay={true}
+  circleLoop={true}
 />
+  </SimpleAnimation>
         {/* <View style={{ height: 50 }}>
           <RadioGroup
             selectedIndex={this.props.tabIndex}

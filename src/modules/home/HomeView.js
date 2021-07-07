@@ -6,9 +6,12 @@ import {
   TouchableOpacity,
   ImageBackground,
   Dimensions,
-  Alert
+  Alert,
+  ScrollView
   // Text,
 } from 'react-native';
+
+import { SimpleAnimation } from 'react-native-simple-animations';
 
 import { fonts, colors } from '../../styles';
 import { Text } from '../../components/StyledText';
@@ -20,9 +23,11 @@ export default class HomeScreen  extends React.Component{
 
   state = {
     search: '',
-    data:[],
+    universities:[],
     loading:true,
-    university:{}
+    university:{},
+    majors:[],
+    major:{}
   };
   
 
@@ -32,13 +37,23 @@ export default class HomeScreen  extends React.Component{
   }
 
   fetchedData = async () => {
-  await fetch('http://localhost:9090/university/all')
+  await fetch('http://192.168.1.4:9090/university/all')
     .then((response) => response.json())
       .then((json) =>{
-        const data = json.filter(item => {
+        const universities = json.filter(item => {
           return item.featured
         })
-        this.setState({ ...this.state,data })})
+        this.setState({ ...this.state,universities })})
+      .catch((error) => console.error(error))
+      .finally(() => {this.setState({ ...this.state,loading:false })});
+
+  await fetch('http://192.168.1.4:9090/major/all')
+    .then((response) => response.json())
+      .then((json) =>{
+        const majors = json.filter(item => {
+          return item.trending
+        })
+        this.setState({ ...this.state,majors })})
       .catch((error) => console.error(error))
       .finally(() => {this.setState({ ...this.state,loading:false })});
   }
@@ -50,10 +65,11 @@ export default class HomeScreen  extends React.Component{
     });
   };
 
-  _renderItem = ({item, index}, parallaxProps) =>{
-    const url = 'http://localhost:9090/file/download/';
+  _renderItemImage = ({item, index}, parallaxProps) =>{
+    const url = 'http://192.168.1.4:9090/file/download/';
     return (
-          <TouchableOpacity  key={item.id} onPress={() => this._openUniversity(item)} style={styles.item}>
+      <SimpleAnimation delay={500} duration={1000} fade staticType='zoom'>
+      <TouchableOpacity  key={item.id} onPress={() => this._openUniversity(item)} style={styles.item}>
             <ParallaxImage
                 source={{ uri: `${url}${item.image}`  }}
                 containerStyle={styles.imageContainer}
@@ -64,6 +80,7 @@ export default class HomeScreen  extends React.Component{
                 unBlurDuration={1000}
                 {...parallaxProps}
             />
+
             <Text style={styles.title} numberOfLines={2}>
                 { item.name }
             </Text>
@@ -71,43 +88,90 @@ export default class HomeScreen  extends React.Component{
                 { item.area }
             </Text>
             </TouchableOpacity>
+            </SimpleAnimation>
+    );
+}
+  _renderItemText = ({item, index}) =>{
+    return (
+      <SimpleAnimation delay={500} duration={1000} fade staticType='zoom'>
+
+          <TouchableOpacity  key={item.id} style={styles.itemText}>
+            <Text style={styles.title} numberOfLines={2}>
+                { item.name }
+            </Text>
+            <Text style={styles.area} numberOfLines={1}>
+                Expected GPA: { item.requiredGPALow } - {item.requiredGPAHigh}
+            </Text>
+            </TouchableOpacity>
+      </SimpleAnimation>
     );
 }
 
 render(){
   return (
-    <View style={styles.container}>
       <ImageBackground
         source={require('../../../assets/images/background.png')}
         style={styles.bgImage}
         resizeMode="cover"
       >
+    <ScrollView contentContainerStyle={styles.contentContainer}>
      
         <View style={styles.sectionLarge}>
+        <SimpleAnimation delay={300} duration={1000} fade staticType='zoom' >
           <Text style={styles.bodyText}>
             The smartest and easiest way to build your future...
           </Text>
+          </SimpleAnimation>
 
-          <View style={styles.sectionLarge}>
+        <View style={styles.sectionLarge}>
             <View style={styles.header}>
+            <SimpleAnimation delay={500} duration={1000} fade staticType='zoom'>
         <Text style={styles.description}>
             Featured Universities
           </Text>
+          </SimpleAnimation>
             </View>
              <Carousel
              layout={'stack'}
                 sliderWidth={screenWidth}
                 sliderHeight={screenWidth}
                 itemWidth={screenWidth - 60}
-                data={this.state.data}
-                renderItem={this._renderItem }
+                data={this.state.universities}
+                renderItem={this._renderItemImage }
                 hasParallaxImages={true}
+                autoplay={true}
+                loop={true}
+                autoplayDelay={3000}
+                autoplayInterval={5000}
+                activeAnimationType={'decay'}
+            />
+      </View>
+        <View style={styles.sectionLarge}>
+            <View style={styles.header}>
+            <SimpleAnimation delay={500} duration={1000} fade staticType='zoom'>
+        <Text style={styles.description}>
+            Trending Majors
+          </Text>
+          </SimpleAnimation>
+            </View>
+             <Carousel
+             layout={'stack'}
+                sliderWidth={screenWidth}
+                sliderHeight={screenWidth}
+                itemWidth={screenWidth - 60}
+                data={this.state.majors}
+                renderItem={this._renderItemText }
+                autoplay={true}
+                loop={true}
+                autoplayDelay={3000}
+                autoplayInterval={8000}
+                activeAnimationType={'spring'}
             />
       </View>
 
         </View>
+    </ScrollView>
       </ImageBackground>
-    </View>
   );
 }
 }
@@ -131,7 +195,7 @@ const styles = StyleSheet.create({
   sectionLarge: {
     flex: 1,
     paddingHorizontal: 20,
-    padding:40,
+    padding:20,
     justifyContent: 'center',
     justifyContent: 'space-around',
   },
@@ -188,8 +252,15 @@ const styles = StyleSheet.create({
   },
   item: {
     marginTop:5,
-    width: screenWidth - 120,
-    height: screenWidth - 120,
+    width: screenWidth -120,
+    height: screenWidth -120,
+    // backgroundColor:'rgba(52, 52, 52, 0.9)',
+    backgroundColor: colors.green,
+    borderRadius: 9,
+  },
+  itemText: {
+    marginTop:5,
+    width: screenWidth -120,
     // backgroundColor:'rgba(52, 52, 52, 0.9)',
     backgroundColor: colors.green,
     borderRadius: 9,

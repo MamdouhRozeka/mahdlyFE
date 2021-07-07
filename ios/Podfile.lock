@@ -251,15 +251,17 @@ PODS:
     - React-jsi (= 0.63.1)
   - ReactNativeUiLib (3.41.0):
     - React
-  - RNCMaskedView (0.1.10):
+  - RNCMaskedView (0.1.11):
     - React
-  - RNGestureHandler (1.8.0):
-    - React
-  - RNLocalize (1.4.2):
+  - RNGestureHandler (1.10.3):
     - React-Core
-  - RNReanimated (1.13.1):
-    - React
-  - RNScreens (2.11.0):
+  - RNLocalize (1.4.3):
+    - React-Core
+  - RNReanimated (1.13.3):
+    - React-Core
+  - RNScreens (2.18.1):
+    - React-Core
+  - RNSearchBar (3.5.1):
     - React
   - RNVectorIcons (6.7.0):
     - React
@@ -303,6 +305,7 @@ DEPENDENCIES:
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSearchBar (from `../node_modules/react-native-search-bar`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - "toolbar-android (from `../node_modules/@react-native-community/toolbar-android`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -378,6 +381,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSearchBar:
+    :path: "../node_modules/react-native-search-bar"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   toolbar-android:
@@ -415,11 +420,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: f3a9123c244f35c40d3c9f3ec3f0b9e5717bb292
   ReactCommon: 2905859f84a94a381bb0d8dd3921ccb1a0047cb8
   ReactNativeUiLib: 52606c273a072841c6fc5cfc9bd617fc87e5ca15
-  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
-  RNLocalize: 452d4118e338dee1e5ca3fac4d5a11a4ab26a46a
-  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
-  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
+  RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
+  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNLocalize: 7c7aeda16c01db7a0918981c14875c0a53be9b79
+  RNReanimated: 514a11da3a2bcc6c3dfd9de32b38e2b9bf101926
+  RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
+  RNSearchBar: 9860431356b7d12a8449d2fddb2b5f3c78d1e99f
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
   toolbar-android: 85f3ef4d691469f2d304e7dee4bca013aa1ba1ff
   Yoga: d5bd05a2b6b94c52323745c2c2b64557c8c66f64

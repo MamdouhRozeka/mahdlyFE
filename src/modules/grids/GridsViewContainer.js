@@ -13,7 +13,7 @@ const loading = true;
 // function Form() {
 
 //   useEffect(() => {
-//     fetch('http://localhost:9090/university/all')
+//     fetch('http://192.168.1.4:9090/university/all')
 //       .then((response) => response.json())
 //       .then((json) => setFetchData(json))
 //       .catch((error) => console.error(error))
