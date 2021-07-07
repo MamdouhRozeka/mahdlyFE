@@ -37,7 +37,7 @@ export default class HomeScreen  extends React.Component{
   }
 
   fetchedData = async () => {
-  await fetch('http://192.168.1.4:9090/university/all')
+  await fetch('http://Mahdlybe-env.eba-ydqxxb9n.us-east-1.elasticbeanstalk.com/university/all')
     .then((response) => response.json())
       .then((json) =>{
         const universities = json.filter(item => {
@@ -47,7 +47,7 @@ export default class HomeScreen  extends React.Component{
       .catch((error) => console.error(error))
       .finally(() => {this.setState({ ...this.state,loading:false })});
 
-  await fetch('http://192.168.1.4:9090/major/all')
+  await fetch('http://Mahdlybe-env.eba-ydqxxb9n.us-east-1.elasticbeanstalk.com/major/all')
     .then((response) => response.json())
       .then((json) =>{
         const majors = json.filter(item => {
@@ -66,7 +66,7 @@ export default class HomeScreen  extends React.Component{
   };
 
   _renderItemImage = ({item, index}, parallaxProps) =>{
-    const url = 'http://192.168.1.4:9090/file/download/';
+    const url = 'http://Mahdlybe-env.eba-ydqxxb9n.us-east-1.elasticbeanstalk.com/file/download/';
     return (
       <SimpleAnimation delay={500} duration={1000} fade staticType='zoom'>
       <TouchableOpacity  key={item.id} onPress={() => this._openUniversity(item)} style={styles.item}>

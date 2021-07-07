@@ -25,14 +25,14 @@ export default class UniversityScreen extends React.Component {
     images:[]
   };
   
-  url = 'http://192.168.1.4:9090/file/download/'
+  url = 'http://Mahdlybe-env.eba-ydqxxb9n.us-east-1.elasticbeanstalk.com/file/download/'
 
   componentDidMount(){
     this.fetchedData();
   }
 
   fetchedData = async () => {
-  await fetch(`http://192.168.1.4:9090/university/${this.state.university.id}`)
+  await fetch(`http://Mahdlybe-env.eba-ydqxxb9n.us-east-1.elasticbeanstalk.com/university/${this.state.university.id}`)
     .then((response) => response.json())
       .then((json) => {
       let images = []

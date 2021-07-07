@@ -13,7 +13,7 @@ const loading = true;
 // function Form() {
 
 //   useEffect(() => {
-//     fetch('http://192.168.1.4:9090/university/all')
+//     fetch('http://Mahdlybe-env.eba-ydqxxb9n.us-east-1.elasticbeanstalk.com/university/all')
 //       .then((response) => response.json())
 //       .then((json) => setFetchData(json))
 //       .catch((error) => console.error(error))
