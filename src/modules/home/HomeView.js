@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     marginTop:2
   },
   item: {
-    marginTop:5,
+    marginTop:10,
     width: screenWidth -120,
     height: screenWidth -120,
     // backgroundColor:'rgba(52, 52, 52, 0.9)',
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     borderRadius: 9,
   },
   itemText: {
-    marginTop:5,
+    marginTop:10,
     width: screenWidth -120,
     // backgroundColor:'rgba(52, 52, 52, 0.9)',
     backgroundColor: colors.green,
