@@ -251,6 +251,8 @@ PODS:
     - React-jsi (= 0.63.1)
   - ReactNativeUiLib (3.41.0):
     - React
+  - RNBootSplash (3.2.4):
+    - React-Core
   - RNCMaskedView (0.1.11):
     - React
   - RNGestureHandler (1.10.3):
@@ -300,6 +302,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeUiLib (from `../node_modules/react-native-ui-lib`)
+  - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNLocalize (from `../node_modules/react-native-localize`)
@@ -371,6 +374,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeUiLib:
     :path: "../node_modules/react-native-ui-lib"
+  RNBootSplash:
+    :path: "../node_modules/react-native-bootsplash"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
@@ -420,6 +425,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: f3a9123c244f35c40d3c9f3ec3f0b9e5717bb292
   ReactCommon: 2905859f84a94a381bb0d8dd3921ccb1a0047cb8
   ReactNativeUiLib: 52606c273a072841c6fc5cfc9bd617fc87e5ca15
+  RNBootSplash: 4844706cbb56a3270556c9b94e59dedadccd47e4
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNLocalize: 7c7aeda16c01db7a0918981c14875c0a53be9b79

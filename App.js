@@ -8,8 +8,14 @@ import { colors } from './src/styles';
 import { store, persistor } from './src/redux/store';
 
 import AppView from './src/modules/AppViewContainer';
+import RNBootSplash from 'react-native-bootsplash';
 
 export default function App() {
+  React.useEffect(()=>{
+     setTimeout(()=>{
+      RNBootSplash.hide();
+     },1000)
+  },[])
   return (
     <Provider store={store}>
       <NavigationContainer>
