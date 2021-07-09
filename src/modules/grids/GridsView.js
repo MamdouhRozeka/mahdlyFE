@@ -8,14 +8,21 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Animated
 } from 'react-native';
 import { colors, fonts } from '../../styles';
 import {useEffect} from "react";
 
 import { RadioGroup, GridRow } from '../../components';
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, IconNode } from 'react-native-elements';
 
 export default class GridsScreen extends React.Component {
+
+  // scrollY = new Animated.value(0)
+  // translateY = scrollY.interpolate({
+  //   inputRange:[0,45],
+  //   outputRange:[0,-45]
+  // })
 
   state = {
     search: '',
@@ -128,8 +135,8 @@ export default class GridsScreen extends React.Component {
         <View style={styles.itemThreeContent}>
           {/* <Text style={styles.itemThreeBrand}>{item.area}</Text> */}
           <View>
-            <Text style={styles.itemThreeTitle} numberOfLines={1}>{item.name} </Text>
-            <Text style={styles.itemThreeSubtitle} numberOfLines={3}>
+            <Text style={styles.itemThreeTitle} numberOfLines={2}>{item.name} </Text>
+            <Text style={styles.itemThreeSubtitle} numberOfLines={5}>
               {item.description}
             </Text>
           </View>
@@ -157,19 +164,28 @@ export default class GridsScreen extends React.Component {
     </TouchableOpacity>
   );
 
+  renderHeader = () => {
+    const {search} = this.state;
+    return (
+    <SearchBar
+    placeholder="Type Here..."
+    onChangeText={this.updateSearch}
+    value={search}
+    round={true}
+    lightTheme={true}
+    inputContainerStyle ={styles.searchContainer}
+    containerStyle= {styles.container}
+  />
+
+  )}
+
   render() {
     // const groupedData =this.props.filteredData;
-    const { search,filteredData } = this.state;
+    const { filteredData } = this.state;
 
     return (
       <View style={styles.container}>
-        <SearchBar
-        placeholder="Type Here..."
-        onChangeText={this.updateSearch}
-        value={search}
-        round={true}
-        lightTheme={true}
-      />
+       
         {/* <View style={{ height: 50 }}>
           <RadioGroup
             selectedIndex={this.props.tabIndex}
@@ -187,6 +203,9 @@ export default class GridsScreen extends React.Component {
           style={{ backgroundColor: colors.white, paddingHorizontal: 15 }}
           data={filteredData}
           renderItem={this._getRenderItemFunction()}
+          ListHeaderComponent={this.renderHeader}
+          stickyHeaderIndices={[0]}
+          stickySectionHeadersEnabled={true}
         />
       </View>
     );
@@ -197,6 +216,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
+  },
+  searchContainer: {
+    flex: 1,
+    backgroundColor: colors.bluish,
   },
   tabsContainer: {
     alignSelf: 'stretch',
@@ -288,8 +311,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   itemThreeImage: {
-    height: 100,
-    width: 100,
+    height: 200,
+    width: 200,
   },
   itemThreeContent: {
     flex: 1,
@@ -298,17 +321,17 @@ const styles = StyleSheet.create({
   },
   itemThreeBrand: {
     fontFamily: fonts.primaryRegular,
-    fontSize: 14,
+    fontSize: 18,
     color: '#617ae1',
   },
   itemThreeTitle: {
     fontFamily: fonts.primaryBold,
-    fontSize: 16,
+    fontSize: 20,
     color: '#5F5F5F',
   },
   itemThreeSubtitle: {
     fontFamily: fonts.primaryRegular,
-    fontSize: 12,
+    fontSize: 16,
     color: '#a4a4a4',
   },
   itemThreeMetaContainer: {
@@ -318,7 +341,7 @@ const styles = StyleSheet.create({
   },
   itemThreePrice: {
     fontFamily: fonts.primaryRegular,
-    fontSize: 15,
+    fontSize: 19,
     color: '#5f5f5f',
     textAlign: 'right',
   },
