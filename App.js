@@ -4,6 +4,8 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { colors } from './src/styles';
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
 
 import { store, persistor } from './src/redux/store';
 
@@ -17,6 +19,8 @@ export default function App() {
      },1000)
   },[])
   return (
+      <ApplicationProvider {...eva} theme={eva.light}>
+
     <Provider store={store}>
       <NavigationContainer>
         <PersistGate
@@ -27,11 +31,12 @@ export default function App() {
             </View>
           }
           persistor={persistor}
-        >
+          >
           <AppView />
         </PersistGate>
       </NavigationContainer>
     </Provider>
+  </ApplicationProvider>
   );
 }
 
